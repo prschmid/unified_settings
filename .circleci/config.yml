@@ -1,0 +1,116 @@
+version: 2.1
+
+# ----------------------------------------------------------------------------
+#
+# REUSABLE CUSTOM DEFINITIONS & COMMANDS
+#
+# ----------------------------------------------------------------------------
+
+commands:
+  attach-dependencies:
+    steps:
+      - checkout
+      - run:
+          name: Set up bundler
+          command: |
+            gem install bundler:2.3.26
+      - run:
+          name: Bundle Install
+          command: |
+            bundle config set --local clean 'true'
+            bundle config set --local deployment 'true'
+            bundle check || bundle install --jobs=4 --retry=3
+      - attach_workspace:
+          at: .
+  
+  save-results:
+    steps:
+      - store_test_results:
+          path: test/reports
+      - store_artifacts:
+          name: "Store artifacts: test reports"
+          path: reports
+          destination: reports
+
+# ----------------------------------------------------------------------------
+#
+# JOB DEFINITIONS
+#
+# ----------------------------------------------------------------------------
+
+jobs:
+  #
+  # QUALITY: Make sure that the code is safe, secure, and clean.
+  #
+  quality:
+    resource_class: small
+
+    docker:
+      - image: cimg/ruby:3.2.2
+
+    steps:
+      # --------- SETUP ---------
+
+      - attach-dependencies
+
+      # --------- QUALITY CHECKS ---------
+
+      - run:
+          name: Ruby Audit
+          command: bundle exec ruby-audit check
+      - run:
+          name: Bundle Audit
+          command: bundle exec bundle-audit check --update
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+
+      # --------- SAVE RESULTS ---------
+
+      - save-results
+
+  test:
+    resource_class: small
+
+    docker:
+      - image: cimg/ruby:3.2.2
+
+    steps:
+      # --------- SETUP ---------
+
+      - attach-dependencies
+
+      # --------- RUN TESTS ---------
+
+      - run:
+          name: Run tests
+          command: bundle exec rake test
+
+      # --------- SAVE RESULTS ---------
+
+      - save-results
+
+
+# ----------------------------------------------------------------------------
+#
+# WORKFLOW DEFINITIONS
+#
+# ----------------------------------------------------------------------------
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - quality
+      - test
+  nightly:
+    jobs:
+      - quality
+      - test
+    triggers:
+      - schedule:
+          cron: "0 2 * * *"
+          filters:
+            branches:
+              only:
+                - main
