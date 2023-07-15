@@ -1,5 +1,8 @@
 # UnifiedSettings
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/prschmid/unified_settings/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/prschmid/unified_settings/tree/main)
+[![Gem Version](https://badge.fury.io/rb/unified_settings.svg)](https://badge.fury.io/rb/unified_settings)
+
 A simple and unified way to get any setting in your code regardless of where it is defined.
 
 ## Installation
