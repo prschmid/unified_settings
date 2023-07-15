@@ -2,8 +2,6 @@
 
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
-require 'test/unit'
-
 require 'minitest/autorun'
 require 'active_record'
 require 'unified_settings'
