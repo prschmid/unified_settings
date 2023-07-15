@@ -40,20 +40,6 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 3.2'
 
-  spec.add_development_dependency('bundler', '~> 2.3')
-  spec.add_development_dependency('bundler-audit', '>= 0')
-  spec.add_development_dependency('config', '>= 3.0')
-  spec.add_development_dependency('minitest', '~> 5.0')
-  spec.add_development_dependency('rails', '>= 7.0')
-  spec.add_development_dependency('rake', '~> 12.3')
-  spec.add_development_dependency('rubocop', '>= 0')
-  spec.add_development_dependency('rubocop-minitest', '>= 0')
-  spec.add_development_dependency('rubocop-performance', '>= 0')
-  spec.add_development_dependency('rubocop-rails', '>= 0')
-  spec.add_development_dependency('rubocop-rake', '>= 0')
-  spec.add_development_dependency('ruby_audit', '>= 0')
-  spec.add_development_dependency('sqlite3', '>= 0')
-  spec.add_development_dependency('temping', '~> 4.0')
   spec.add_runtime_dependency('activerecord', '> 4.2.0')
   spec.add_runtime_dependency('activesupport', '> 4.2.0')
   spec.metadata['rubygems_mfa_required'] = 'true'
