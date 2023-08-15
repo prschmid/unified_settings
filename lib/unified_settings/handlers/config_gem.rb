@@ -32,11 +32,11 @@ module UnifiedSettings
         case_sensitive = case_sensitive?(case_sensitive)
 
         val = setting_obj.dig(*key_arr)
-        return val if val
+        return val unless val.nil?
         return nil if case_sensitive
 
         val = setting_obj.dig(*key_arr.map(&:downcase))
-        return val if val
+        return val unless val.nil?
 
         setting_obj.dig(*key_arr.map(&:upcase))
       end

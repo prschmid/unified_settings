@@ -15,8 +15,8 @@ module UnifiedSettings
 
         variable_names.each do |name|
           if klass
-            return true if klass.const_get(name)
-          elsif Object.const_get(name)
+            return true if klass.const_defined?(name)
+          elsif Object.const_defined?(name)
             return true
           end
         rescue NameError

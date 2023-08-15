@@ -5,7 +5,8 @@ require 'test_helper'
 module UnifiedSettings
   module Handlers
     class ConstantsTest < Minitest::Test
-      TEST_CONSTANT = 'test'
+      TEST_CONST = 'test'
+      TEST_CONST_FALSE_VALUE = false
 
       def test_can_check_if_global_constant_is_defined_case_insesitive
         handler = ::UnifiedSettings::Handlers::Constants.new
@@ -20,13 +21,13 @@ module UnifiedSettings
         handler = ::UnifiedSettings::Handlers::Constants.new
 
         assert handler.defined?(
-          'UnifiedSettings::Handlers::ConstantsTest::TEST_CONSTANT'
+          'UnifiedSettings::Handlers::ConstantsTest::TEST_CONST'
         )
         assert handler.defined?(
-          'UnifiedSettings::Handlers::ConstantsTest::Test_Constant'
+          'UnifiedSettings::Handlers::ConstantsTest::Test_Const'
         )
         assert handler.defined?(
-          'UnifiedSettings::Handlers::ConstantsTest::test_constant'
+          'UnifiedSettings::Handlers::ConstantsTest::test_const'
         )
       end
 
@@ -52,15 +53,32 @@ module UnifiedSettings
         handler = ::UnifiedSettings::Handlers::Constants.new
 
         assert handler.defined?(
-          'UnifiedSettings::Handlers::ConstantsTest::TEST_CONSTANT',
+          'UnifiedSettings::Handlers::ConstantsTest::TEST_CONST',
           case_sensitive: true
         )
         refute handler.defined?(
-          'UnifiedSettings::Handlers::ConstantsTest::Test_Constant',
+          'UnifiedSettings::Handlers::ConstantsTest::Test_Const',
           case_sensitive: true
         )
         refute handler.defined?(
-          'UnifiedSettings::Handlers::ConstantsTest::test_constant',
+          'UnifiedSettings::Handlers::ConstantsTest::test_const',
+          case_sensitive: true
+        )
+      end
+
+      def test_can_check_if_class_constant_is_defined_key_value_is_false
+        handler = ::UnifiedSettings::Handlers::Constants.new
+
+        assert handler.defined?(
+          'UnifiedSettings::Handlers::ConstantsTest::TEST_CONST_FALSE_VALUE',
+          case_sensitive: true
+        )
+        refute handler.defined?(
+          'UnifiedSettings::Handlers::ConstantsTest::Test_Const_False_Value',
+          case_sensitive: true
+        )
+        refute handler.defined?(
+          'UnifiedSettings::Handlers::ConstantsTest::test_const_false_value',
           case_sensitive: true
         )
       end
@@ -77,17 +95,17 @@ module UnifiedSettings
       def test_can_get_class_constant_case_insensitive
         handler = ::UnifiedSettings::Handlers::Constants.new
 
-        assert_equal ConstantsTest::TEST_CONSTANT,
+        assert_equal ConstantsTest::TEST_CONST,
                      handler.get(
-                       'UnifiedSettings::Handlers::ConstantsTest::TEST_CONSTANT'
+                       'UnifiedSettings::Handlers::ConstantsTest::TEST_CONST'
                      )
-        assert_equal ConstantsTest::TEST_CONSTANT,
+        assert_equal ConstantsTest::TEST_CONST,
                      handler.get(
-                       'UnifiedSettings::Handlers::ConstantsTest::Test_Constant'
+                       'UnifiedSettings::Handlers::ConstantsTest::Test_Const'
                      )
-        assert_equal ConstantsTest::TEST_CONSTANT,
+        assert_equal ConstantsTest::TEST_CONST,
                      handler.get(
-                       'UnifiedSettings::Handlers::ConstantsTest::test_constant'
+                       'UnifiedSettings::Handlers::ConstantsTest::test_const'
                      )
       end
 
@@ -114,19 +132,35 @@ module UnifiedSettings
         handler = ::UnifiedSettings::Handlers::Constants.new
 
         assert_equal \
-          ConstantsTest::TEST_CONSTANT,
+          ConstantsTest::TEST_CONST,
           handler.get(
-            'UnifiedSettings::Handlers::ConstantsTest::TEST_CONSTANT',
+            'UnifiedSettings::Handlers::ConstantsTest::TEST_CONST',
             case_sensitive: true
           )
         assert_nil handler.get(
-          'UnifiedSettings::Handlers::ConstantsTest::Test_Constant',
+          'UnifiedSettings::Handlers::ConstantsTest::Test_Const',
           case_sensitive: true
         )
         assert_nil handler.get(
-          'UnifiedSettings::Handlers::ConstantsTest::test_constant',
+          'UnifiedSettings::Handlers::ConstantsTest::test_const',
           case_sensitive: true
         )
+      end
+
+      def test_can_get_class_constant_key_value_is_false
+        handler = ::UnifiedSettings::Handlers::Constants.new
+
+        assert_equal \
+          ConstantsTest::TEST_CONST_FALSE_VALUE,
+          handler.get(
+            'UnifiedSettings::Handlers::ConstantsTest::TEST_CONST_FALSE_VALUE'
+          )
+        assert_equal \
+          ConstantsTest::TEST_CONST_FALSE_VALUE,
+          handler.get(
+            'UnifiedSettings::Handlers::ConstantsTest::test_const_false_value',
+            case_sensitive: false
+          )
       end
 
       private

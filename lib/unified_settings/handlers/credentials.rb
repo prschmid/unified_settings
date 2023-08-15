@@ -29,11 +29,11 @@ module UnifiedSettings
         case_sensitive = case_sensitive?(case_sensitive)
 
         val = Rails.application.credentials.dig(*key_arr)
-        return val if val
+        return val unless val.nil?
         return nil if case_sensitive
 
         val = Rails.application.credentials.dig(*key_arr.map(&:downcase))
-        return val if val
+        return val unless val.nil?
 
         Rails.application.credentials.dig(*key_arr.map(&:upcase))
       end
