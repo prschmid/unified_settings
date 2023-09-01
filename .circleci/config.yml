@@ -82,13 +82,13 @@ jobs:
 
       # --------- RUN TESTS ---------
 
-      - run:
-          name: Create Dummy Rails App
-          command: bundle exec rake generate_dummy_rails_app
+      # - run:
+      #     name: Create Dummy Rails App
+      #     command: bundle exec rake generate_dummy_rails_app
 
       - run:
           name: Run tests
-          command: bundle exec rake test
+          command: bundle exec rake generate_dummy_rails_app test
 
       # --------- SAVE RESULTS ---------
 
