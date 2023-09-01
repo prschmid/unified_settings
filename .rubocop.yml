@@ -15,6 +15,7 @@ AllCops:
     - 'config/**/*'
     - 'vendor/**/*'
     - 'bin/**/*'
+    - 'test/dummy/**/*'
 
 Layout/LineLength:
   Max: 80
@@ -47,6 +48,10 @@ Metrics/ModuleLength:
 
 Minitest/MultipleAssertions:
   Max: 10
+
+Rails/RakeEnvironment:
+  Exclude:
+    - 'Rakefile'
 
 Rails/RefuteMethods:
   Exclude:
