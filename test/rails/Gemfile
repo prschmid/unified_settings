@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 #
-# This is the default Rails 7.0.7 Gemfile but with the one gem we need added
-# to the end. See below.
+# This is the Rails 7.0.7 Gemfile. We commented out several of the default
+# gems and added the ones we need to the end.
 #
 
 source 'https://rubygems.org'
@@ -23,7 +23,7 @@ gem 'puma', '~> 5.0'
 
 # Build JSON APIs with ease
 # [https://github.com/rails/jbuilder]
-gem 'jbuilder'
+# gem 'jbuilder'
 
 # Use Kredis to get higher-level data types in Redis
 # [https://github.com/rails/kredis]
@@ -37,7 +37,7 @@ gem 'jbuilder'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', require: false
+# gem 'bootsnap', require: false
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -49,7 +49,7 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem 'web-console'
+  # gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
