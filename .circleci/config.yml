@@ -40,9 +40,11 @@ commands:
       - run:
           name: Bundle Install for Dummy Rails App
           command: |
+            cd test/dummy
             bundle config set --local clean 'true'
             bundle config set --local deployment 'true'
-            bundle check --gemfile test/dummy/Gemfile || bundle install --gemfile test/dummy/Gemfile --jobs=4 --retry=3
+            bundle check || bundle install --jobs=4 --retry=3
+            cd ../..
       - run:
           name: Precompile assets
           command: |
