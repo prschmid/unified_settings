@@ -58,7 +58,7 @@ task :generate_dummy_rails_app do
   #
 
   FileUtils.rm_r Dir.glob('test/dummy/test/*')
-  system('cp -r test/rails/test/lib test/dummy/test/.')
+  # system('cp -r test/rails/test/lib test/dummy/test/.')
 end
 
 require 'rubocop/rake_task'
