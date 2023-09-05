@@ -43,6 +43,12 @@ commands:
             bundle config set --local clean 'true'
             bundle config set --local deployment 'true'
             bundle check --gemfile test/dummy/Gemfile || bundle install --gemfile test/dummy/Gemfile --jobs=4 --retry=3
+      - run:
+          name: Precompile assets
+          command: |
+            cd test/dummy
+            RAILS_ENV=test DB_ADAPTER=nulldb SECRET_TOKEN=dummytoken bundle exec rails assets:precompile
+            cd ../..
       - attach_workspace:
           at: .
   
