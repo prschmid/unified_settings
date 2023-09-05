@@ -22,6 +22,14 @@ commands:
             bundle check || bundle install --jobs=4 --retry=3
       - attach_workspace:
           at: .
+
+  build-dummy-rails-app:
+    steps:
+      - run:
+          name: Create Dummy Rails App
+          command: bundle exec rake generate_dummy_rails_app
+      - attach_workspace:
+          at: .
   
   save-results:
     steps:
@@ -79,16 +87,13 @@ jobs:
       # --------- SETUP ---------
 
       - attach-dependencies
+      - build-dummy-rails-app
 
       # --------- RUN TESTS ---------
 
-      # - run:
-      #     name: Create Dummy Rails App
-      #     command: bundle exec rake generate_dummy_rails_app
-
       - run:
           name: Run tests
-          command: bundle exec rake generate_dummy_rails_app test
+          command: bundle exec rake test
 
       # --------- SAVE RESULTS ---------
 
