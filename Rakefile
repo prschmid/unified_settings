@@ -7,6 +7,7 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = true
   t.libs << 'test'
   t.libs << 'lib'
+  t.libs << 'test/dummy'
 
   # We will include all of the files in test but are going to explicitly
   # exclude all tests in rails. This is because we copy those files
@@ -59,7 +60,7 @@ task :generate_dummy_rails_app do
   #
 
   FileUtils.rm_r Dir.glob('test/dummy/test/*')
-  # system('cp -r test/rails/test/lib test/dummy/test/.')
+  system('cp -r test/rails/test/lib test/dummy/test/.')
 end
 
 require 'rubocop/rake_task'
