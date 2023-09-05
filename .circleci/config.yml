@@ -28,6 +28,12 @@ commands:
       - run:
           name: Create Dummy Rails App
           command: bundle exec rake generate_dummy_rails_app
+      - run:
+          name: Bundle Install for Dummy Rails App
+          command: |
+            bundle config set --local clean 'true'
+            bundle config set --local deployment 'true'
+            bundle check --gemfile test/dummy/Gemfile || bundle install --gemfile test/dummy/Gemfile --jobs=4 --retry=3
       - attach_workspace:
           at: .
   
