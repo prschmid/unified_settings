@@ -4,6 +4,9 @@
 # This is the Rails 7.0.7 Gemfile. We commented out several of the default
 # gems and added the ones we need to the end.
 #
+# IMPORTANT: If you make changes to this Gemfile, you need to also update the
+# dependencies in the library Gemfile as well
+#
 
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
