@@ -49,8 +49,7 @@ task :generate_dummy_rails_app do
   # Setup the Config gem
   system('cd test/dummy; rails g config:install')
   system(
-    'cp test/rails/config/initializers/config.rb ' \
-    'test/dummy/config/initializers/.'
+    'cp test/rails/config/initializers/*.rb test/dummy/config/initializers/.'
   )
 
   #
