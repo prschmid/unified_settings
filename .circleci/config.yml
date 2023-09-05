@@ -6,6 +6,15 @@ version: 2.1
 #
 # ----------------------------------------------------------------------------
 
+custom-definitions:
+  ruby-only: &docker-ruby-only
+    docker:
+      - image: cimg/ruby:3.2.2
+  shared-env-vars: &shared-env-vars
+    TZ: "/usr/share/zoneinfo/America/New_York"
+    RAILS_ENV: "test"
+    RACK_ENV: "test"
+    
 commands:
   attach-dependencies:
     steps:
@@ -20,8 +29,24 @@ commands:
             bundle config set --local clean 'true'
             bundle config set --local deployment 'true'
             bundle check || bundle install --jobs=4 --retry=3
-      - attach_workspace:
-          at: .
+
+  build-dummy-rails-app:
+    steps:
+      - run:
+          name: Create Dummy Rails App
+          command: bundle exec rake generate_dummy_rails_app
+      - run:
+          name: Bundle Install for Dummy Rails App
+          command: |
+            bundle config set --local clean 'true'
+            bundle config set --local deployment 'true'
+            bundle check --gemfile test/dummy/Gemfile || bundle install --gemfile test/dummy/Gemfile --jobs=4 --retry=3
+      - run:
+          name: Precompile Assets for Dummy Rails App
+          command: |
+            cd test/dummy
+            RAILS_ENV=test DB_ADAPTER=nulldb SECRET_TOKEN=dummytoken bundle exec rails assets:precompile
+            cd ../..
   
   save-results:
     steps:
@@ -45,8 +70,10 @@ jobs:
   quality:
     resource_class: small
 
-    docker:
-      - image: cimg/ruby:3.2.2
+    <<: *docker-ruby-only
+
+    environment:
+      <<: *shared-env-vars
 
     steps:
       # --------- SETUP ---------
@@ -72,13 +99,16 @@ jobs:
   test:
     resource_class: small
 
-    docker:
-      - image: cimg/ruby:3.2.2
+    <<: *docker-ruby-only
+
+    environment:
+      <<: *shared-env-vars
 
     steps:
       # --------- SETUP ---------
 
       - attach-dependencies
+      - build-dummy-rails-app
 
       # --------- RUN TESTS ---------
 
