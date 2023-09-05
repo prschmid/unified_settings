@@ -4,7 +4,7 @@ require 'bundler/gem_tasks'
 require 'rake/testtask'
 
 Rake::TestTask.new(:test) do |t|
-  t.verbose = true
+  t.verbose = false
   t.libs << 'test'
   t.libs << 'lib'
   t.libs << 'test/dummy'
@@ -49,8 +49,7 @@ task :generate_dummy_rails_app do
   # Setup the Config gem
   system('cd test/dummy; rails g config:install')
   system(
-    'cp test/rails/config/initializers/config.rb ' \
-    'test/dummy/config/initializers/.'
+    'cp test/rails/config/initializers/*.rb test/dummy/config/initializers/.'
   )
 
   #
