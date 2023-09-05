@@ -4,7 +4,7 @@ require 'bundler/gem_tasks'
 require 'rake/testtask'
 
 Rake::TestTask.new(:test) do |t|
-  t.verbose = true
+  t.verbose = false
   t.libs << 'test'
   t.libs << 'lib'
   t.libs << 'test/dummy'
