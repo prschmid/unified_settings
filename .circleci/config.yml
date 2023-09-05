@@ -6,6 +6,15 @@ version: 2.1
 #
 # ----------------------------------------------------------------------------
 
+custom-definitions:
+  ruby-only: &docker-ruby-only
+    docker:
+      - image: cimg/ruby:3.2.2
+  shared-env-vars: &shared-env-vars
+    TZ: "/usr/share/zoneinfo/America/New_York"
+    RAILS_ENV: "test"
+    RACK_ENV: "test"
+    
 commands:
   attach-dependencies:
     steps:
@@ -59,8 +68,10 @@ jobs:
   quality:
     resource_class: small
 
-    docker:
-      - image: cimg/ruby:3.2.2
+    <<: *docker-ruby-only
+
+    environment:
+      <<: *shared-env-vars
 
     steps:
       # --------- SETUP ---------
@@ -86,8 +97,10 @@ jobs:
   test:
     resource_class: small
 
-    docker:
-      - image: cimg/ruby:3.2.2
+    <<: *docker-ruby-only
+
+    environment:
+      <<: *shared-env-vars
 
     steps:
       # --------- SETUP ---------
