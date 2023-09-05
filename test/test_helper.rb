@@ -11,7 +11,7 @@ require 'unified_settings'
 
 # Include the dummy Rails app so we can run the tests for the components
 # that require Rails
-require File.expand_path('dummy/config/environment.rb', __dir__)
+# require File.expand_path('dummy/config/environment.rb', __dir__)
 
 # We don't need to include this for now, but keeping this for now incase we
 # need it in the future.
