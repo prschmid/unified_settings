@@ -75,4 +75,4 @@ end
 #
 # Add multi-environment yaml settings to rails
 # https://github.com/rubyconfig/config
-gem 'config'
+gem 'config', '>= 3.0'
