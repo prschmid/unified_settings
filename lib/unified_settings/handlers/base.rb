@@ -43,6 +43,8 @@ module UnifiedSettings
       end
 
       def nested_key_exists?(hash, keys)
+        return false if hash.nil?
+
         current_level = hash
         keys.each do |key|
           return false if current_level.nil?
@@ -50,6 +52,7 @@ module UnifiedSettings
 
           current_level = current_level[key]
         end
+
         false
       end
     end
