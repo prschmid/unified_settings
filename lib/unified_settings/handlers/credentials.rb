@@ -37,6 +37,21 @@ module UnifiedSettings
 
         Rails.application.credentials.dig(*key_arr.map(&:upcase))
       end
+
+      protected
+
+      def nested_key_exists?(hash, keys)
+        return false if hash.nil?
+
+        current_level = hash.config
+        keys.each do |key|
+          return false if current_level.nil?
+          return true if current_level.key?(key)
+
+          current_level = current_level[key]
+        end
+        false
+      end
     end
   end
 end
