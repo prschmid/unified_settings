@@ -14,7 +14,7 @@ Rake::TestTask.new(:test) do |t|
   # to the dummy Rails app so that we can test the Rails specific handlers
   # in the context of a Rails app. See the `generate_dummy_rails_app` for
   # more details
-  t.test_files = \
+  t.test_files =
     FileList['test/**/*_test.rb'].exclude('test/rails/**/*_test.rb')
 end
 
