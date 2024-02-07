@@ -46,16 +46,15 @@ module UnifiedSettings
     end
 
     test 'can check if setting defined from Rails credentials' do
-      Rails.application.credentials.test_key_1 = 'test'
+      key = 'test_credential_1'
 
-      assert @settings.defined?('test_key_1')
-      assert @settings.defined?('test_key_1'.upcase)
-      assert @settings.defined?('test_key_1'.downcase)
+      assert @settings.defined?(key)
+      assert @settings.defined?(key.to_sym)
+      assert @settings.defined?(key.upcase)
+      assert @settings.defined?(key.downcase)
 
-      assert @settings.defined?('test_key_1', case_sensitive: true)
-      refute @settings.defined?('test_key_1'.upcase, case_sensitive: true)
-
-      Rails.application.credentials.pop('test_key_1')
+      assert @settings.defined?(key, case_sensitive: true)
+      refute @settings.defined?(key.upcase, case_sensitive: true)
     end
 
     test 'can check if setting defined from Config gem Setting object' do

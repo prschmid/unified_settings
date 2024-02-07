@@ -44,7 +44,10 @@ task :generate_dummy_rails_app do
   # Install/Setup the dependencies
   #
 
+  system('cp -f test/rails/config/credentials.yml.enc test/dummy/config/.')
+  system('cp -f test/rails/config/master.key test/dummy/config/.')
   system('cp -f test/rails/Gemfile test/dummy/.')
+  system('cp -f test/rails/.ruby-* test/dummy/.')
 
   # Setup the Config gem
   system('cd test/dummy; rails g config:install')
