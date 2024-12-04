@@ -21,11 +21,11 @@ gem 'ruby_audit', '>= 0'
 ##
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.1.0'
+gem 'rails', '~> 8.0.0'
 
-# The original asset pipeline for Rails
-# [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
+# The modern asset pipeline for Rails
+# https://github.com/rails/propshaft
+gem 'propshaft'
 
 # Use the Puma web server
 # [https://github.com/puma/puma]
@@ -48,6 +48,10 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
+
+# Bundle and process CSS
+# https://github.com/rails/cssbundling-rails
+gem 'cssbundling-rails'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
