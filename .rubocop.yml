@@ -1,8 +1,8 @@
-require:
-  - 'rubocop-performance'
-  - 'rubocop-rails'
-  - 'rubocop-minitest'
-  - 'rubocop-rake'
+plugins:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-minitest
+  - rubocop-rake
 
 AllCops:
   NewCops: enable
