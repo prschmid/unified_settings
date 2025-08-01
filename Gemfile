@@ -29,7 +29,7 @@ gem 'propshaft'
 
 # Use the Puma web server
 # [https://github.com/puma/puma]
-gem 'puma', '~> 6.0'
+gem 'puma', '~> 6.6'
 
 # Build JSON APIs with ease
 # [https://github.com/rails/jbuilder]
