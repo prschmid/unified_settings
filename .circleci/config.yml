@@ -22,7 +22,7 @@ commands:
       - run:
           name: Set up bundler
           command: |
-            gem install bundler:2.3.26
+            gem install bundler:2.6.9
       - run:
           name: Bundle Install
           command: |

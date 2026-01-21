@@ -313,7 +313,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  bundler (~> 2.3)
+  bundler (~> 2.6)
   bundler-audit
   capybara
   config (>= 3.0)

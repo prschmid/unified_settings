@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in unified_settings.gemspec
 gemspec
 
-gem 'bundler', '~> 2.3'
+gem 'bundler', '~> 2.6'
 gem 'bundler-audit', '>= 0'
 gem 'minitest', '~> 5.0'
 gem 'rake', '~> 13.0'
