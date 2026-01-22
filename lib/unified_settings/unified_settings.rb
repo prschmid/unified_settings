@@ -4,23 +4,33 @@ require 'logger'
 
 # Unified way to get settings
 module UnifiedSettings
-  include ActiveSupport::Configurable
+  # Config object to emulate ActiveSupport::Configurable behavior that is
+  # deprecated in Rails 8.2
+  class Config
+    attr_accessor :handlers, :default_value, :case_sensitive, :on_missing_key,
+                  :coercions, :coerce_arrays, :coerce_array_separator
+
+    def initialize
+      @handlers = [
+        Handlers::Env, Handlers::Credentials, Handlers::Constants
+      ]
+      @default_value = nil
+      @case_sensitive = false
+      @on_missing_key = [:log_error]
+      @coercions = %i[nil boolean integer float]
+      @coerce_arrays = true
+      @coerce_array_separator = ','
+    end
+  end
 
   NO_DEFAULT = :no_default
 
-  def self.configure
-    # Set the defaults
-    config.handlers = [
-      Handlers::Env, Handlers::Credentials, Handlers::Constants
-    ]
-    config.default_value = nil
-    config.case_sensitive = false
-    config.on_missing_key = [:log_error]
-    config.coercions = %i[nil boolean integer float]
-    config.coerce_arrays = true
-    config.coerce_array_separator = ','
+  def self.config
+    @config ||= Config.new
+  end
 
-    super
+  def self.configure
+    yield config if block_given?
 
     # Create an instance of the settings that can be used
     @settings = Settings.new

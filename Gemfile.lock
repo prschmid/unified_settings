@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    unified_settings (0.2.1)
+    unified_settings (0.2.2)
       activerecord (> 4.2.0)
       activesupport (> 4.2.0)
 
