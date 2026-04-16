@@ -234,7 +234,7 @@ GEM
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
-    rake (13.3.1)
+    rake (13.4.2)
     rdoc (7.2.0)
       erb
       psych (>= 4.0.0)
@@ -328,7 +328,7 @@ DEPENDENCIES
   propshaft
   puma (~> 7.2)
   rails (~> 8.1.2)
-  rake (~> 13.0)
+  rake (~> 13.4)
   rubocop (~> 1.84)
   rubocop-minitest
   rubocop-performance
