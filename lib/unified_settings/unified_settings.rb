@@ -41,7 +41,7 @@ module UnifiedSettings
     settings.defined?(key, case_sensitive:)
   end
 
-  # rubocop:disable Metrics/ParameterLists
+  # rubocop:disable-next Metrics/ParameterLists
   def self.get(
     key, default: NO_DEFAULT, case_sensitive: nil, handlers: nil, coerce: true,
     on_missing_key: nil
@@ -55,5 +55,4 @@ module UnifiedSettings
       default:
     )
   end
-  # rubocop:enable Metrics/ParameterLists
 end

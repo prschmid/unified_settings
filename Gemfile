@@ -21,7 +21,7 @@ gem 'ruby_audit', '>= 0'
 ##
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 8.1.3'
+gem 'rails', '~> 8.1.4'
 
 # The modern asset pipeline for Rails
 # https://github.com/rails/propshaft
@@ -77,8 +77,7 @@ group :test do
   # Use system testing
   # [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
+  gem 'selenium-webdriver', '>= 4.14'
 end
 
 #

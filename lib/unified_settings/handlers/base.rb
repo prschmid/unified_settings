@@ -9,11 +9,10 @@ module UnifiedSettings
     class Base
       KEY_NESTING_SEPARATOR = '.'
 
-      # rubocop:disable Lint/UnusedMethodArgument
+      # rubocop:disable-next Lint/UnusedMethodArgument
       def get(key, case_sensitive: nil)
         raise 'Needs to be implemented by subclasss'
       end
-      # rubocop:enable Lint/UnusedMethodArgument
 
       protected
 
