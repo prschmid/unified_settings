@@ -80,7 +80,7 @@ module UnifiedSettings
       val
     end
 
-    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable-next Metrics/CyclomaticComplexity
     def handle_on_missing_key(key, on_missing_key: nil)
       actions = on_missing_key || UnifiedSettings.config.on_missing_key
       actions = [actions] unless actions.is_a?(Array)
@@ -109,7 +109,6 @@ module UnifiedSettings
         end
       end
     end
-    # rubocop:enable Metrics/CyclomaticComplexity
 
     def on_missing_key_raise(key)
       raise error_message(key)
